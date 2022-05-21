@@ -49,18 +49,21 @@ public:
         currentMove = 0;
     }
     void move(Move move);
-    void draw(ogstream & gout, Position selectPos, Position hoverPos);
+    void draw(ogstream & gout, Position & selectPos, Position & hoverPos);
 private:
     std::array<Piece*, 64> board;
     unsigned int currentMove;
 
     Piece*& at(int x, int y) 
     {
+        assert(x <= 8 && x >= 1);
+        assert(y <= 8 && y >= 1);
         return board[(x - 1) + ((y - 1) * 8)];
     }
 
     Piece*& at(Position pos)
     {
+        assert(pos.isValid());
         return at(pos.getX(), pos.getY());
     }
 

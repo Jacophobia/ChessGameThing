@@ -5,7 +5,7 @@ private:
     char position;
     bool valid = false;
 public:
-    Position(): position('\0') {}
+    Position(): position(0) {}
     Position(int pos);
     Position(int x, int y) {
         set(x, y);
@@ -31,10 +31,10 @@ public:
     int getY() {
         return 1 + (position / 8);
     }
-    bool Position::operator==(Position rhs) {
+    bool Position::operator==(const Position & rhs) {
         return position == rhs.position;
     }
-    Position& operator=(Position rhs)
+    Position& operator=(const Position & rhs)
     {
         position = rhs.position;
         valid = rhs.valid;

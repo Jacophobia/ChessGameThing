@@ -62,11 +62,13 @@ void Board::move(Move move)
     currentMove++;
 }
 
-void Board::draw(ogstream & gout, Position selectPos, Position hoverPos)
+void Board::draw(ogstream & gout, Position & selectPos, Position & hoverPos)
 {
     gout.drawBoard();
-    gout.drawSelected(selectPos);
-    gout.drawHover(hoverPos);
+    if (selectPos.isValid())
+        gout.drawSelected(selectPos);
+    if (hoverPos.isValid())
+        gout.drawHover(hoverPos);
     for (auto& element : board)
     {
         if (element) {
